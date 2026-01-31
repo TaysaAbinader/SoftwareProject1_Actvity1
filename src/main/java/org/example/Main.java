@@ -11,9 +11,8 @@ public class Main {
         System.out.println("Temperature in celsius: ");
 
         double temperatureInCelsius = Double.parseDouble(scanner.nextLine());
+        double convertedToFahrenheit = TemperatureConverter.celsiusToFarenheit(temperatureInCelsius);
 
-        double convertedToFarenheit = TemperatureConverter.celsiusToFarenheit(temperatureInCelsius);
-
-        System.out.printf("%.2f Celsius is %.2f Farenheit", temperatureInCelsius, convertedToFarenheit);
+        System.out.printf("%.2f Celsius is %.2f Fahrenheit", temperatureInCelsius, convertedToFahrenheit);
     }
 }

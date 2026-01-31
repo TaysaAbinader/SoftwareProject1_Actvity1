@@ -3,12 +3,12 @@ package org.example;
 public class TemperatureConverter {
 
     public static double farenheitToCelsius (double temperatureInFarenheit) {
-        double temperatureInCelsius = (temperatureInFarenheit - 32) * (5/9);
+        double temperatureInCelsius = (temperatureInFarenheit - 32) * (5.0/9.0);
         return temperatureInCelsius;
     }
 
     public static double celsiusToFarenheit (double temperatureInCelsius) {
-        double temperatureInFarenheit = (temperatureInCelsius * (9/5)) + 32;
+        double temperatureInFarenheit = (temperatureInCelsius * (9.0/5.0)) + 32;
         return temperatureInFarenheit;
     }
 
