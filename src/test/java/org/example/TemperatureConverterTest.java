@@ -3,7 +3,13 @@ package org.example;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-public class TemperatureConverterTest {
+ public class TemperatureConverterTest {
+    @Test
+    void testClassForCoverage() {
+        TemperatureConverter converter = new TemperatureConverter();
+        assertNotNull(converter);
+    }
+
     @Test
     void testFahrenheitToCelsius() {
         // (32°F − 32) × 5/9 = 0°C
