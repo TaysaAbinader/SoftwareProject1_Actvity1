@@ -21,6 +21,14 @@ public class TemperatureConverterTest {
     }
 
     @Test
+    void testKelvinToCelsius() {
+        // Example: 300K - 273.15 = 26.85°C
+        assertEquals(26.85, TemperatureConverter.kelvinToCelsius(300), 0.001);
+        // Absolute zero
+        assertEquals(-273.15, TemperatureConverter.kelvinToCelsius(0), 0.001);
+    }
+
+    @Test
     void testIsExtremeTemperature() {
         // Test high extreme
         assertTrue(TemperatureConverter.isExtremeTemperature(50.1));

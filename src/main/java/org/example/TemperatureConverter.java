@@ -12,6 +12,11 @@ public class TemperatureConverter {
         return temperatureInFarenheit;
     }
 
+    public static double kelvinToCelsius(double temperatureInKelvin) {
+        double temperatureKtoCelsius = temperatureInKelvin - 273.15;
+        return temperatureKtoCelsius;
+    }
+
     public static boolean isExtremeTemperature (double temperatureInCelsius) {
         double highTemperature = 50;
         double lowTemperature = -40;
