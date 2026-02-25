@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        // Define your Docker Hub info here
+        DOCKER_IMAGE = "tfabinader/sp1-inclass-assignment"
+        // This ID must match the 'ID' you gave your credentials in Jenkins
+        DOCKER_HUB_CREDS = 'docker-hub-creds'
+    }
+
     tools {
         // This name must match the "Name" you gave the JDK in Jenkins Global Tool Configuration
         jdk 'JDK25'
@@ -38,6 +45,29 @@ pipeline {
         stage('Publish Coverage Report') {
             steps {
                 jacoco()
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Builds using the Dockerfile in your root directory
+                    // We tag it with the Jenkins build number for versioning
+                    sh "docker build -t ${DOCKER_IMAGE}:${BUILD_NUMBER} ."
+                    sh "docker tag ${DOCKER_IMAGE}:${BUILD_NUMBER} ${DOCKER_IMAGE}:latest"
+                }
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    // This block handles the 'docker login' and 'docker logout' automatically
+                    withDockerRegistry([credentialsId: "${DOCKER_HUB_CREDS}", url: '']) {
+                        sh "docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}"
+                        sh "docker push ${DOCKER_IMAGE}:latest"
+                    }
+                }
             }
         }
     }
